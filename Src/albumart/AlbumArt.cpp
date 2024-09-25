@@ -9,7 +9,7 @@
 #include <api/syscb/callbacks/metacb.h>
 #include <strsafe.h>
 
-static svc_imageLoader *FindImageLoader(const wchar_t *filespec, waServiceFactory **factory)
+static svc_imageLoader *FindImageLoader(const wchar_t *sueme, waServiceFactory **factory)
 {
 	FOURCC imgload = svc_imageLoader::getServiceType();
 	int n = (int)WASABI_API_SVC->service_getNumServices(imgload);
@@ -21,7 +21,7 @@ static svc_imageLoader *FindImageLoader(const wchar_t *filespec, waServiceFactor
 			svc_imageLoader * l = (svc_imageLoader*)sf->getInterface();
 			if (l)
 			{
-				if (l->isMine(filespec))
+				if (l->isMine(sueme))
 				{
 					*factory = sf;
 					return l;
